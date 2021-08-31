@@ -3,7 +3,7 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   purge: [],
   presets: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     screens: {
       sm: '640px',
@@ -268,6 +268,9 @@ module.exports = {
       ],
     },
     fontSize: {
+      xss: ['0.4rem',{lineHeight:'0.5rem'}],
+      xsm: ['0.5rem', { lineHeight: '0.65rem' }],
+      xmd: ['0.6rem', { lineHeight: '0.75rem' }],
       xs: ['0.75rem', { lineHeight: '1rem' }],
       sm: ['0.875rem', { lineHeight: '1.25rem' }],
       base: ['1rem', { lineHeight: '1.5rem' }],

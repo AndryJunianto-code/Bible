@@ -2,10 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './styles/main.css'
+import {BrowserRouter as Router} from 'react-router-dom';
+import {ViewportProvider} from './context/ViewportContext'
+import {Provider} from 'react-redux'
+import store from './redux/store'
+import { QueryClientProvider,QueryClient } from 'react-query';
 
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Provider store={store}>
+        <QueryClientProvider client={client}>
+          <ViewportProvider>
+              <App />
+          </ViewportProvider>
+        </QueryClientProvider>
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

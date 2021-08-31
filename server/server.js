@@ -1,8 +1,10 @@
 const express = require('express');
-const request = require('request');
+const BibleRoute = require('./routes/BibleRoute')
 
 const app = express();
+app.use(express.json())
 
+app.use('/api/bible',BibleRoute)
 
   
 const PORT = process.env.PORT || 5000;

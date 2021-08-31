@@ -2,16 +2,23 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:5000/api/",
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
+    "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "autoprefixer": "^10.3.3",
+    "axios": "^0.21.1",
     "postcss-cli": "^8.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-query": "^3.21.1",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
     "tailwindcss": "^2.2.8",
     "web-vitals": "^1.1.2"
   },
@@ -20,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:css":"postcss ./src/styles/tailwind.css -o src/styles/main.css"
+    "build:css": "postcss ./src/styles/tailwind.css -o src/styles/main.css"
   },
   "eslintConfig": {
     "extends": [
