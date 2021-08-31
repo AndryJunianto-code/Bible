@@ -6,6 +6,7 @@ import BooksModal from './modal/BooksModal'
 export default function Guidebar() {
     const dispatch = useDispatch()
     const isBooksModalOpen = useSelector(state => state.modal.isBooksModalOpen)
+    const {bookTitle,chapter} = useSelector(state=>state.content.title)
     const booksModal = () => {
         dispatch(handleBooksModal({
             bool:true
@@ -14,7 +15,7 @@ export default function Guidebar() {
     
     return (
         <div className='relative border-b border-gray-200 py-2 bg-white'>
-            <h2 onClick={booksModal} className='w-full text-center text-sm tracking-wider'>Genesis 1</h2>
+            <h2 onClick={booksModal} className='w-full text-center text-sm tracking-wider'>{bookTitle} {chapter}</h2>
             <div className="absolute -top-0.5 right-7">
                 <FolderIcon style={{width:"18px",height:"18px"}}/>
             </div>
