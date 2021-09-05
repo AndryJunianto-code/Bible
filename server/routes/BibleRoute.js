@@ -15,7 +15,7 @@ router.get('/books/list',(req,res)=> {
 
 router.get('/books/:book/chapters/:chapter',(req,res)=> {
   request(
-      { url: `https://bible-go-api.rkeplin.com/v1/books/${req.params.book}/chapters/${req.params.chapter}` },
+      { url: `https://bible-go-api.rkeplin.com/v1/books/${req.params.book}/chapters/${req.params.chapter}?translation=NIV` },
       (error, response, body) => {  
         if (error || response.statusCode !== 200) {
           return res.status(500).json(error);

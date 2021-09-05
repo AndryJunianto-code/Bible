@@ -14,7 +14,7 @@ export default function Folder() {
         }
     }
     return (
-        <div className='col-span-1 bg-blue-200 w-full'>
+        <div className='col-span-1 bg-blue-200 w-full h-auto'>
             <div className='grid grid-cols-3 justify-center'>
                 <div onClick={handleSection} className={`text-center border-r border-gray-100 py-1 ${selectedSection === 'Bookmark' && 'bg-red-100'}`} data-text='Bookmark'>
                     <BookmarkBorderIcon data-text='Bookmark'/>
