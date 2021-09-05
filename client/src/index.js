@@ -6,6 +6,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {ViewportProvider} from './context/ViewportContext'
 import {Provider} from 'react-redux'
 import store from './redux/store'
+import AuthProvider from './auth/AuthProvider';
 import { QueryClientProvider,QueryClient } from 'react-query';
 
 const client = new QueryClient({
@@ -18,13 +19,15 @@ const client = new QueryClient({
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Provider store={store}>
-        <QueryClientProvider client={client}>
-          <ViewportProvider>
-              <App />
-          </ViewportProvider>
-        </QueryClientProvider>
-      </Provider>
+      <AuthProvider>
+        <Provider store={store}>
+          <QueryClientProvider client={client}>
+            <ViewportProvider>
+                <App />
+            </ViewportProvider>
+          </QueryClientProvider>
+        </Provider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

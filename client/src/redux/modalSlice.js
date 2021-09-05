@@ -3,18 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 export const modalSlice = createSlice({
     name:"modal",
     initialState:{
-        isBooksModalOpen:false
+        isBooksModalOpen:false,
+        isContentFullDisplay:true
     },
     reducers:{
         handleBooksModal:(state,action)=> {
             state.isBooksModalOpen = action.payload.bool
+        },
+        handleContentDisplay:(state,action)=> {
+            state.isContentFullDisplay = action.payload.bool
         }
-       /*  update:(state,action)=> {
-            state.name = action.payload.name
-            state.email = action.payload.email
-        }, */
     }
 })
 
-export const {handleBooksModal} = modalSlice.actions
+export const {handleBooksModal,handleContentDisplay} = modalSlice.actions
 export default modalSlice.reducer

@@ -21,4 +21,8 @@
   /* Handle on hover */
 .customizeScroll::-webkit-scrollbar-thumb:hover {
     background:rgb(137, 190, 255);
-  }
+}
+ .contentHeight{
+   height: calc(100vh - 10rem);
+   overflow-y: auto;
+ }

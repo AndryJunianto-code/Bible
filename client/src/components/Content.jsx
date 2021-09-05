@@ -11,6 +11,7 @@ import { setTitle, setVerses } from '../redux/contentSlice';
 export default function Content() {
     const {width} = useViewportContext()
     const verses = useSelector(state => state.content.verses)
+    const {isContentFullDisplay} = useSelector(state => state.modal)
     const dispatch = useDispatch()
     
     let currentChapter = verses[0].chapterId
@@ -41,14 +42,14 @@ export default function Content() {
         dispatch(setVerses({data}))
     }
     return (
-        <div className='w-full pb-6'>
-            {width >= 768 && !beginning && <div className='fixed top-1/2 left-20' onClick={clickLeft}><ChevronLeftIcon/></div>}
-            <div className='w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 mx-auto mt-6'>
-                {verses.map((v)=> (
-                    <Verse v={v} key={v.id}/>
-                ))}
-            </div>
-            {width >= 768 && !ending && <div className='fixed top-1/2 right-20' onClick={clickRight}><ChevronRightIcon/></div>}
+        <div className='w-full pb-6 col-span-2'>
+                {width >= 768 && !beginning && <div className='fixed top-1/2 left-20' onClick={clickLeft}><ChevronLeftIcon/></div>}
+                <div className={`w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && 'xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 contentHeight customizeScroll'}  mx-auto mt-6`}>
+                    {verses.map((v)=> (
+                        <Verse v={v} key={v.id}/>
+                    ))}
+                </div>
+                {width >= 768 && !ending && <div className='fixed top-1/2 right-20' onClick={clickRight}><ChevronRightIcon/></div>}
         </div>
     )
 }
