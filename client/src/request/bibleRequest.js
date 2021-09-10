@@ -5,7 +5,9 @@ export const fetchBooksList = async () => {
     return data
 }
 
-export const fetchChapterContent = async(book,chapter) => {
+export const fetchChapterContent = async(obj) => {
+    const book = obj.queryKey[1]
+    const chapter = obj.queryKey[2]
     const {data} = await axios.get(`/bible/books/${book}/chapters/${chapter}`)
     return data
 }

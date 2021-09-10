@@ -32,7 +32,7 @@ export default function HighlightModal() {
                 </div>
                 <div className='flex'>
                     <div className='mr-3'><EventNoteIcon/></div>
-                    <div onClick={()=>removeHighlight(highlightData,title,lastClick,dispatch,refetch)}><HighlightOffIcon/></div>
+                    <div onClick={()=>removeHighlight(title,lastClick,dispatch,refetch)}><HighlightOffIcon/></div>
                 </div>
             </section>
         </div>

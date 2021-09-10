@@ -7,7 +7,7 @@ const colorObj = {
     pink:2,
     yellow:3
 }
-const removeHighlight = async (highlightData,title,lastClick,dispatch,refetch) => {
+const removeHighlight = async (title,lastClick,dispatch,refetch) => {
     let temp = [...lastClick]
     for(let i = 0; i < temp.length;i++) {
         let split = temp[i].split('##')
@@ -21,7 +21,6 @@ const removeHighlight = async (highlightData,title,lastClick,dispatch,refetch) =
         } catch(err){console.log(err)}
     }
     lastClick = temp
-    const previousVerses = highlightData[0].data[0].verses
     refetch()
     dispatch(closeHighlightModal())
 }
