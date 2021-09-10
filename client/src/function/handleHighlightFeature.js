@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { closeHighlightModal } from '../redux/modalSlice'
+import { closeHighlightModal} from '../redux/modalSlice'
 
 const colorObj = {
     blue:0,
@@ -7,7 +7,7 @@ const colorObj = {
     pink:2,
     yellow:3
 }
-const handleHighlightFeature = async (color,highlightData,title,lastClick,dispatch) => {
+const handleHighlightFeature = async (color,highlightData,title,lastClick,dispatch,refetch) => {
     if(highlightData.length === 0) {
         let res;
         if(color === 'blue') {
@@ -51,8 +51,20 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
                 ]
             })
         }
-        dispatch(closeHighlightModal())
     } else {
+        let temp = [...lastClick]
+        for(let i = 0; i < temp.length;i++) {
+            if(temp[i][0] + temp[i][1] === "##") {
+                let split = temp[i].split('##')
+                let color = split[1]
+                temp[i] = split[2]/* VERSE */
+                await axios.put(`/highlight/remove/${color}`, {
+                    title:title.bookTitle + "_" + title.chapter,
+                    verses:temp[i]
+                })
+            }
+        }
+        lastClick = temp
         try{
             const index = colorObj[color]
             const previousVerses = highlightData[0].data[index].verses
@@ -65,6 +77,8 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
             console.log(err)
         }
     }
+    refetch()
+    dispatch(closeHighlightModal())
 }
 
 export default handleHighlightFeature

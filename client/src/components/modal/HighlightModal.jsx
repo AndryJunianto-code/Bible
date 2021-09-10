@@ -12,7 +12,7 @@ export default function HighlightModal() {
     const lastClick = useSelector(state => state.modal.lastClick)
     const dispatch = useDispatch()
 
-    const {data:highlightData,isSuccess} = useQuery(['fetchHighlight',title.bookTitle + "_" + title.chapter],fetchHighlight,{retryDelay:1000})
+    const {data:highlightData,isSuccess,refetch} = useQuery(['fetchHighlight',title.bookTitle + "_" + title.chapter],fetchHighlight,{retryDelay:1000})
     
     return (
         <div className='absolute top-10 right-0 bg-gray-50 w-40 h-40 shadow-sm rounded-sm border border-gray-100' onClick={e=>e.stopPropagation()}>
@@ -23,10 +23,10 @@ export default function HighlightModal() {
                     <div><BookmarkIcon style={{color:'green'}}/></div>
                 </div>
                 <div className='flex my-2'>
-                    <div onClick={()=>handleHighlightFeature('blue',highlightData,title,lastClick,dispatch)}><CreateIcon style={{color:'blue'}}/></div>
-                    <div onClick={()=>handleHighlightFeature('pink',highlightData,title,lastClick,dispatch)} className='mx-3'><CreateIcon style={{color:'pink'}}/></div>
-                    <div onClick={()=>handleHighlightFeature('green',highlightData,title,lastClick,dispatch)}><CreateIcon style={{color:'green'}}/></div>
-                    <div onClick={()=>handleHighlightFeature('yellow',highlightData,title,lastClick,dispatch)} className='ml-3'><CreateIcon style={{color:'yellow'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('blue',highlightData,title,lastClick,dispatch,refetch)}><CreateIcon style={{color:'blue'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('pink',highlightData,title,lastClick,dispatch,refetch)} className='mx-3'><CreateIcon style={{color:'pink'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('green',highlightData,title,lastClick,dispatch,refetch)}><CreateIcon style={{color:'green'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('yellow',highlightData,title,lastClick,dispatch,refetch)} className='ml-3'><CreateIcon style={{color:'yellow'}}/></div>
                 </div>
                 <div><EventNoteIcon/></div>
             </section>

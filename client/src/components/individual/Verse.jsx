@@ -11,15 +11,21 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
     const [highlightColor,setHighlightColor] = useState('none')
     const isHighlightModalOpen = useSelector(state => state.modal.isHighlightModalOpen)
     const dispatch = useDispatch()
-    const isLastClick = lastClick[lastClick.length-1] === v.verse
+    const isLastClick = lastClick[lastClick.length-1] && lastClick[lastClick.length-1].includes(v.verse)
     const paragraphHighlight = highlightColor === 'blue' ? 'bg-blue-400' : highlightColor === 'green' ? 'bg-green-400' : highlightColor === 'pink' ? 'bg-pink-400' : highlightColor === 'yellow' ? 'bg-yellow-400' : ''
     const selectVerse  = (e) => {
+        const dataHighlight = e.target.getAttribute('data-highlight')
         setIsSelected(!isSelected)
         if(isSelected === false) {
-            dispatch(handleLastClick({data:[...lastClick,e.target.textContent]}))
+            if(dataHighlight !== 'none') {
+                const special = `##${dataHighlight}##${e.target.textContent}` 
+                dispatch(handleLastClick({data:[...lastClick,special]}))
+            } else {
+                dispatch(handleLastClick({data:[...lastClick,e.target.textContent]}))
+            }
         } else {
             dispatch(handleLastClick({data:lastClick.filter(v=>v !== e.target.textContent)}))
-        }
+        }   
     }    
     useEffect(async ()=> {
         if(isHighlightModalOpen === false) {
@@ -43,7 +49,7 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
         <div className={`flex ${isLastClick && 'relative'}`}>
             <p className='text-xmd mr-0.5 leading-8'>{v.verseId}</p>
             <p className={`mt-0.5 px-1 py-0.5 ${paragraphHighlight} ${isSelected && 'bg-gray-200 bg-opacity-80'}`} 
-                onClick={selectVerse}
+                onClick={selectVerse} data-highlight={highlightColor}
                 data-click="verse">{v.verse}</p>
             {lastClick.length > 0 && isLastClick && isHighlightModalOpen &&<HighlightModal/>} 
         </div>
