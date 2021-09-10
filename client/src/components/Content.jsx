@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Verse from './individual/Verse'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchChapterContent } from '../request/bibleRequest';
 import numOfChapters from '../data/numOfChapters'
 import books from '../data/books'
-import { setTitle, setVerses } from '../redux/contentSlice';
+import { setHighlight, setTitle, setVerses } from '../redux/contentSlice';
 import { handleLastClick } from '../redux/modalSlice';
+import axios from 'axios'
 export default function Content() {
     const {width} = useViewportContext()
     const verses = useSelector(state => state.content.verses)
+    const title = useSelector(state => state.content.title)
     const {isContentFullDisplay,lastClick} = useSelector(state => state.modal)
     const dispatch = useDispatch()
     
@@ -42,6 +44,15 @@ export default function Content() {
         const data = await fetchChapterContent(currentBookNum,currentChapter)
         dispatch(setVerses({data}))
     }
+
+    const getHighlight = async () => {
+        const key = title.bookTitle + "_" + title.chapter
+        const res =  await axios.get(`/highlight/${key}`)
+        dispatch(setHighlight({data:res.data}))
+    }
+    useEffect(()=> {
+        getHighlight()
+    },[verses])
     return (
         <div className='w-full pb-6 col-span-2 relative'>
                 <div className={`mx-auto pt-6 mb-5 w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && `xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 customizeScroll ${width >= 768 && 'contentHeight'}`}`}>

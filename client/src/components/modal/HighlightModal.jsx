@@ -2,11 +2,14 @@ import React from 'react'
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import CreateIcon from '@material-ui/icons/Create';
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import { useDispatch, useSelector } from 'react-redux';  
+import handleHighlightFeature from '../../function/handleHighlightFeature';
 
-export default function HighlightModal({setLastClick}) {
-    const closeHighlightModal = () => {
-        setLastClick([])
-    }
+export default function HighlightModal() {
+    const {highlight:highlightData,title} = useSelector(state => state.content)
+    const lastClick = useSelector(state => state.modal.lastClick)
+    const dispatch = useDispatch()
+
     return (
         <div className='absolute top-10 right-0 bg-gray-50 w-40 h-40 shadow-sm rounded-sm border border-gray-100' onClick={e=>e.stopPropagation()}>
             <section className='flex flex-col p-3'>
@@ -16,10 +19,10 @@ export default function HighlightModal({setLastClick}) {
                     <div><BookmarkIcon style={{color:'green'}}/></div>
                 </div>
                 <div className='flex my-2'>
-                    <div><CreateIcon style={{color:'blue'}}/></div>
-                    <div className='mx-3'><CreateIcon style={{color:'pink'}}/></div>
-                    <div><CreateIcon style={{color:'green'}}/></div>
-                    <div className='ml-3'><CreateIcon style={{color:'yellow'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('blue',highlightData,title,lastClick,dispatch)}><CreateIcon style={{color:'blue'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('pink',highlightData,title,lastClick,dispatch)} className='mx-3'><CreateIcon style={{color:'pink'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('green',highlightData,title,lastClick,dispatch)}><CreateIcon style={{color:'green'}}/></div>
+                    <div onClick={()=>handleHighlightFeature('yellow',highlightData,title,lastClick,dispatch)} className='ml-3'><CreateIcon style={{color:'yellow'}}/></div>
                 </div>
                 <div><EventNoteIcon/></div>
             </section>
