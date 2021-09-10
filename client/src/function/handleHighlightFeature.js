@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { setHighlight } from '../redux/contentSlice'
 import { closeHighlightModal } from '../redux/modalSlice'
 
 const colorObj = {
@@ -53,17 +52,15 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
             })
         }
         dispatch(closeHighlightModal())
-        dispatch(setHighlight({data:res.data}))
     } else {
         try{
             const index = colorObj[color]
-            const previousVerses = highlightData.data[index].verses
+            const previousVerses = highlightData[0].data[index].verses
             await axios.put('http://localhost:5000/api/highlight', {
                 title:title.bookTitle + "_" + title.chapter,
                 color:color,
                 newVerses:[...previousVerses,...lastClick]
             })
-            console.log('success update')
         } catch(err) {
             console.log(err)
         }

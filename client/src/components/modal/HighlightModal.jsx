@@ -4,12 +4,16 @@ import CreateIcon from '@material-ui/icons/Create';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import { useDispatch, useSelector } from 'react-redux';  
 import handleHighlightFeature from '../../function/handleHighlightFeature';
+import {useQuery} from 'react-query'
+import { fetchHighlight } from '../../request/bibleRequest';
 
 export default function HighlightModal() {
-    const {highlight:highlightData,title} = useSelector(state => state.content)
+    const {title} = useSelector(state => state.content)
     const lastClick = useSelector(state => state.modal.lastClick)
     const dispatch = useDispatch()
 
+    const {data:highlightData,isSuccess} = useQuery(['fetchHighlight',title.bookTitle + "_" + title.chapter],fetchHighlight,{retryDelay:1000})
+    
     return (
         <div className='absolute top-10 right-0 bg-gray-50 w-40 h-40 shadow-sm rounded-sm border border-gray-100' onClick={e=>e.stopPropagation()}>
             <section className='flex flex-col p-3'>
