@@ -33,4 +33,18 @@ router.put('/', async(req,res)=> {
         res.status(500).json(err)
     }
 })
+
+router.put('/remove/:color', async(req,res)=> {
+    try{
+        const highlight = await Highlight.updateOne(
+            {title:req.body.title,"data.color":req.params.color},
+            {$pull:{
+                "data.$.verses":req.body.verses
+            }}
+        )
+        res.status(200).json(highlight)
+    } catch(err) {
+        res.status(500).json(err)
+    }
+})
 module.exports = router

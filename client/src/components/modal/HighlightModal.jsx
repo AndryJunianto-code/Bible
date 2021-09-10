@@ -2,8 +2,10 @@ import React from 'react'
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import CreateIcon from '@material-ui/icons/Create';
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useDispatch, useSelector } from 'react-redux';  
 import handleHighlightFeature from '../../function/handleHighlightFeature';
+import removeHighlight from '../../function/removeHighlight';
 import {useQuery} from 'react-query'
 import { fetchHighlight } from '../../request/bibleRequest';
 
@@ -28,7 +30,10 @@ export default function HighlightModal() {
                     <div onClick={()=>handleHighlightFeature('green',highlightData,title,lastClick,dispatch,refetch)}><CreateIcon style={{color:'green'}}/></div>
                     <div onClick={()=>handleHighlightFeature('yellow',highlightData,title,lastClick,dispatch,refetch)} className='ml-3'><CreateIcon style={{color:'yellow'}}/></div>
                 </div>
-                <div><EventNoteIcon/></div>
+                <div className='flex'>
+                    <div className='mr-3'><EventNoteIcon/></div>
+                    <div onClick={()=>removeHighlight(highlightData,title,lastClick,dispatch,refetch)}><HighlightOffIcon/></div>
+                </div>
             </section>
         </div>
     )

@@ -13,6 +13,7 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
     const dispatch = useDispatch()
     const isLastClick = lastClick[lastClick.length-1] && lastClick[lastClick.length-1].includes(v.verse)
     const paragraphHighlight = highlightColor === 'blue' ? 'bg-blue-400' : highlightColor === 'green' ? 'bg-green-400' : highlightColor === 'pink' ? 'bg-pink-400' : highlightColor === 'yellow' ? 'bg-yellow-400' : ''
+    
     const selectVerse  = (e) => {
         const dataHighlight = e.target.getAttribute('data-highlight')
         setIsSelected(!isSelected)

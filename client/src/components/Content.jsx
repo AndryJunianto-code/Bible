@@ -47,7 +47,7 @@ export default function Content() {
     }
 
     const {data:highlightData,isSuccess} = useQuery(['fetchHighlight',title.bookTitle + "_" + title.chapter],fetchHighlight,{retryDelay:1000})
-
+    
     return (
         <>
         {isSuccess && <div className='w-full pb-6 col-span-2 relative'>
