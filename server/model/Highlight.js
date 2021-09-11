@@ -3,7 +3,10 @@ const mongoose = require('mongoose')
 const Highlight = new mongoose.Schema({
     title:{
         type:String,
-        unique:true
+    },
+    userId:{
+        type:String,
+        required:true,
     },
     data:{
         type:Array,

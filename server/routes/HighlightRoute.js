@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const Highlight = require('../model/Highlight')
 
-router.get('/:title', async(req,res)=> {
+router.get('/:title/:userId', async(req,res)=> {
     try{
-        const highlights = await Highlight.find({title:req.params.title})
+        const highlights = await Highlight.find({title:req.params.title,userId:req.params.userId})
         res.status(200).json(highlights)
     } catch(err) {
         res.status(500).json(err)
@@ -23,7 +23,7 @@ router.post('/', async(req,res)=> {
 router.put('/', async(req,res)=> {
     try{
         const highlight = await Highlight.updateOne(
-            {title:req.body.title,"data.color":req.body.color},
+            {title:req.body.title,userId:req.body.userId,"data.color":req.body.color},
             {$set:{
                 "data.$.verses":req.body.newVerses
             }}
@@ -37,7 +37,7 @@ router.put('/', async(req,res)=> {
 router.put('/remove/:color', async(req,res)=> {
     try{
         const highlight = await Highlight.updateOne(
-            {title:req.body.title,"data.color":req.params.color},
+            {title:req.body.title,userId:req.body.userId,"data.color":req.params.color},
             {$pull:{
                 "data.$.verses":req.body.verses
             }}

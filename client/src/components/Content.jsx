@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Verse from './individual/Verse'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -10,6 +10,7 @@ import books from '../data/books'
 import { setCurrentBookNum, setCurrentChapter, setTitle} from '../redux/contentSlice';
 import { handleLastClick } from '../redux/modalSlice';
 import {useQuery} from 'react-query'
+import {useAuth0} from '@auth0/auth0-react'
 
 export default function Content() {
     const {width} = useViewportContext()
@@ -17,6 +18,7 @@ export default function Content() {
     const title = useSelector(state => state.content.title)
     const {isContentFullDisplay,lastClick} = useSelector(state => state.modal)
     const dispatch = useDispatch()
+    const {user,isAuthenticated} = useAuth0()
     
     const {data:verses,isSuccess:versesSuccess} = useQuery(['fetchChapterContent',currentBookNum,currentChapter],fetchChapterContent,{retryDelay:1000})
     let varBookNum = currentBookNum
@@ -49,10 +51,12 @@ export default function Content() {
         dispatch(setTitle({bookTitle:books[varBookNum-1],chapter:varChapter}))
     }
 
-    const {data:highlightData,isSuccess} = useQuery(['fetchHighlight',title.bookTitle + "_" + title.chapter],fetchHighlight,{retryDelay:1000})
+    const {data:highlightData,isSuccess} = useQuery(
+        ['fetchHighlight',title.bookTitle + "_" + title.chapter,user?.sub],fetchHighlight,{retryDelay:1000,enabled:isAuthenticated}
+    )
     return (
         <>
-        {isSuccess && versesSuccess && <div className='w-full pb-6 col-span-2 relative'>
+        {versesSuccess && <div className='w-full pb-6 col-span-2 relative'>
                 <div className={`mx-auto pt-6 mb-5 w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && `xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 customizeScroll ${width >= 768 && 'contentHeight'}`}`}>
                     { verses.map((v)=> (
                         <Verse v={v} key={v.id} handleLastClick={handleLastClick} lastClick={lastClick} highlightData={highlightData}/>

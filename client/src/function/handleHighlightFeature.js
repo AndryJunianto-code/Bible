@@ -7,12 +7,13 @@ const colorObj = {
     pink:2,
     yellow:3
 }
-const handleHighlightFeature = async (color,highlightData,title,lastClick,dispatch,refetch) => {
+const handleHighlightFeature = async (color,highlightData,title,lastClick,dispatch,highlightRefetch,user) => {
     if(highlightData.length === 0) {
         let res;
         if(color === 'blue') {
-            res = await axios.post('http://localhost:5000/api/highlight', {
+            res = await axios.post('/highlight', {
                 title:  title.bookTitle + "_" + title.chapter,
+                userId:user.sub,
                 data:[
                     {color:'blue',verses:lastClick},
                     {color:'green',verses:[]},
@@ -21,8 +22,9 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
                 ]
             })
         } else if(color === 'green') {
-            res = await axios.post('http://localhost:5000/api/highlight', {
+            res = await axios.post('/highlight', {
                 title:  title.bookTitle + "_" + title.chapter,
+                userId:user.sub,
                 data:[
                     {color:'blue',verses:[]},
                     {color:'green',verses:lastClick},
@@ -31,8 +33,9 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
                 ]
             })
         } else if(color === 'pink') {
-            res = await axios.post('http://localhost:5000/api/highlight', {
+            res = await axios.post('/highlight', {
                 title:  title.bookTitle + "_" + title.chapter,
+                userId:user.sub,
                 data:[
                     {color:'blue',verses:[]},
                     {color:'green',verses:[]},
@@ -41,8 +44,9 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
                 ]
             })
         } else if(color === 'yellow') {
-            res = await axios.post('http://localhost:5000/api/highlight', {
+            res = await axios.post('/highlight', {
                 title:  title.bookTitle + "_" + title.chapter,
+                userId:user.sub,
                 data:[
                     {color:'blue',verses:[]},
                     {color:'green',verses:[]},
@@ -60,6 +64,7 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
                 temp[i] = split[2]/* VERSE */
                 await axios.put(`/highlight/remove/${color}`, {
                     title:title.bookTitle + "_" + title.chapter,
+                    userId:user.sub,
                     verses:temp[i]
                 })
             }
@@ -68,8 +73,9 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
         try{
             const index = colorObj[color]
             const previousVerses = highlightData[0].data[index].verses
-            await axios.put('http://localhost:5000/api/highlight', {
+            await axios.put('/highlight', {
                 title:title.bookTitle + "_" + title.chapter,
+                userId:user.sub,
                 color:color,
                 newVerses:[...previousVerses,...lastClick]
             })
@@ -77,7 +83,7 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
             console.log(err)
         }
     }
-    refetch()
+    highlightRefetch()
     dispatch(closeHighlightModal())
 }
 

@@ -34,7 +34,7 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
         }
     },[isHighlightModalOpen])
     useEffect(()=>{
-        if(highlightData.length > 0) {
+        if(highlightData && highlightData.length > 0) {
             if(highlightData[0].data[blueIndex].verses.includes(v.verse)) {
                 setHighlightColor('blue')
             } else if(highlightData[0].data[greenIndex].verses.includes(v.verse)) {
@@ -43,6 +43,8 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
                 setHighlightColor('pink')
             } else if(highlightData[0].data[yellowIndex].verses.includes(v.verse)) {
                 setHighlightColor('yellow')
+            } else {
+                setHighlightColor('none')
             }
         }
     },[highlightData])

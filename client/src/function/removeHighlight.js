@@ -1,13 +1,7 @@
 import axios from 'axios'
 import { closeHighlightModal} from '../redux/modalSlice'
 
-const colorObj = {
-    blue:0,
-    green:1,
-    pink:2,
-    yellow:3
-}
-const removeHighlight = async (title,lastClick,dispatch,refetch) => {
+const removeHighlight = async (title,lastClick,dispatch,highlightRefetch,user) => {
     let temp = [...lastClick]
     for(let i = 0; i < temp.length;i++) {
         let split = temp[i].split('##')
@@ -16,12 +10,13 @@ const removeHighlight = async (title,lastClick,dispatch,refetch) => {
         try{
             await axios.put(`/highlight/remove/${color}`, {
                 title:title.bookTitle + "_" + title.chapter,
+                userId:user.sub,
                 verses:temp[i]
             })
         } catch(err){console.log(err)}
     }
     lastClick = temp
-    refetch()
+    highlightRefetch()
     dispatch(closeHighlightModal())
 }
 

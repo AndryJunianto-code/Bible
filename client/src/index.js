@@ -8,6 +8,9 @@ import {Provider} from 'react-redux'
 import store from './redux/store'
 import AuthProvider from './auth/AuthProvider';
 import { QueryClientProvider,QueryClient } from 'react-query';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:5000/api'
 
 const client = new QueryClient({
   defaultOptions: {

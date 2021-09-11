@@ -7,11 +7,14 @@ import SignupButton from "./SignupButton";
 const AuthenticationButton = () => {
   const { isAuthenticated } = useAuth0();
 
-  return isAuthenticated ? <LogoutButton /> : (
-      <>
-      <LoginButton /> 
-      <SignupButton/>
-    </>
+  return isAuthenticated ? 
+      <div className='flex flex-col'>
+      <LogoutButton />
+      </div> : (
+      <div className='flex flex-col'>
+        <LoginButton /> 
+        <SignupButton/>
+      </div>
   );
 };
 

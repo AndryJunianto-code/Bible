@@ -6,7 +6,8 @@ export const modalSlice = createSlice({
         isBooksModalOpen:false,
         isContentFullDisplay:true,
         lastClick:[],
-        isHighlightModalOpen:false
+        isHighlightModalOpen:false,
+        isAccountModalOpen:false
     },
     reducers:{
         handleBooksModal:(state,action)=> {
@@ -26,9 +27,12 @@ export const modalSlice = createSlice({
         closeHighlightModal:(state,action)=> {
             state.isHighlightModalOpen = false
             state.lastClick = []
+        },
+        handleAccountModal:(state,action)=>{
+            state.isAccountModalOpen = action.payload.bool
         }
     }
 })
 
-export const {handleBooksModal,handleContentDisplay,handleLastClick,closeHighlightModal} = modalSlice.actions
+export const {handleBooksModal,handleContentDisplay,handleLastClick,closeHighlightModal,handleAccountModal} = modalSlice.actions
 export default modalSlice.reducer

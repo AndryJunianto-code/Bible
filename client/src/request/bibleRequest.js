@@ -14,6 +14,7 @@ export const fetchChapterContent = async(obj) => {
 
 export const fetchHighlight = async(obj) => {
     const title = obj.queryKey[1]
-    const {data} = await axios.get(`/highlight/${title}`)
+    const userId = obj.queryKey[2]
+    const {data} = await axios.get(`/highlight/${title}/${userId}`)
     return data
 }

@@ -20,7 +20,7 @@ export default function Guidebar() {
         <div className='relative border-b border-gray-200 py-2 bg-white'>
             <h2 onClick={booksModal} className='w-full text-center text-sm tracking-wider'>{bookTitle} {chapter}</h2>
             <div className="absolute top-1 right-12" onClick={contentDisplay}>
-                <FolderIcon style={{width:"18px",height:"18px"}}/>
+                <FolderIcon style={{width:"20px",height:"20px"}}/>
             </div>
             {isBooksModalOpen && <BooksModal/>}
         </div>
