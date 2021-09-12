@@ -22,7 +22,46 @@
 .customizeScroll::-webkit-scrollbar-thumb:hover {
     background:rgb(137, 190, 255);
 }
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #bebebe;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background:rgb(156, 197, 247);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background:rgb(137, 190, 255);
+}
+
  .contentHeight{
    height: calc(100vh - 10rem);
    overflow-y: auto;
+ }
+ .height86{
+   height: 86%;
+ }
+
+ .blueHighlight{
+   background-color: rgb(171, 212, 247) 
+ }
+ .yellowHighlight{
+   background-color: rgb(255, 240, 122) 
+ }
+ .greenHighlight{
+   background-color: rgb(184, 228, 131) 
+ }
+ .pinkHighlight{
+   background-color: rgb(255, 179, 235) 
+ }
+ .selectedHighlight{
+   background-color: rgb(240, 240, 240) !important;
  }

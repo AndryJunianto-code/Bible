@@ -14,11 +14,11 @@ import {useAuth0} from '@auth0/auth0-react'
 
 export default function Content() {
     const {width} = useViewportContext()
-    const {currentBookNum,currentChapter} = useSelector(state => state.content)
+    const {currentBookNum,currentChapter,user} = useSelector(state => state.content)
     const title = useSelector(state => state.content.title)
     const {isContentFullDisplay,lastClick} = useSelector(state => state.modal)
     const dispatch = useDispatch()
-    const {user,isAuthenticated} = useAuth0()
+    const {isAuthenticated} = useAuth0()
     
     const {data:verses,isSuccess:versesSuccess} = useQuery(['fetchChapterContent',currentBookNum,currentChapter],fetchChapterContent,{retryDelay:1000})
     let varBookNum = currentBookNum
@@ -51,19 +51,24 @@ export default function Content() {
         dispatch(setTitle({bookTitle:books[varBookNum-1],chapter:varChapter}))
     }
 
-    const {data:highlightData,isSuccess} = useQuery(
+    const {data:highlightData,refetch:refetchHighlight} = useQuery(
         ['fetchHighlight',title.bookTitle + "_" + title.chapter,user?.sub],fetchHighlight,{retryDelay:1000,enabled:isAuthenticated}
     )
+    useEffect(()=> {
+        if(isAuthenticated) {
+            refetchHighlight()
+        }
+    },[isAuthenticated,user])
     return (
         <>
-        {versesSuccess && <div className='w-full pb-6 col-span-2 relative'>
+        {versesSuccess && <div className='w-full col-span-2 relative'>
                 <div className={`mx-auto pt-6 mb-5 w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && `xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 customizeScroll ${width >= 768 && 'contentHeight'}`}`}>
-                    { verses.map((v)=> (
+                    {verses.map((v)=> (
                         <Verse v={v} key={v.id} handleLastClick={handleLastClick} lastClick={lastClick} highlightData={highlightData}/>
                     ))}
                 </div>
-                {width >= 768 && !beginning && <div className='absolute bottom-0 left-1/2 transform -translate-x-44' onClick={clickLeft}><ChevronLeftIcon/></div>}
-                {width >= 768 && !ending && <div className='absolute bottom-0 right-1/2 transform translate-x-44' onClick={clickRight}><ChevronRightIcon/></div>}
+                {width >= 768 && !beginning && <div className='absolute -bottom-7 left-1/2 transform -translate-x-44' onClick={clickLeft}><ChevronLeftIcon/></div>}
+                {width >= 768 && !ending && <div className='absolute -bottom-7 right-1/2 transform translate-x-44' onClick={clickRight}><ChevronRightIcon/></div>}
         </div>}
         </>
     )

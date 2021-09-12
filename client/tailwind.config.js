@@ -1,5 +1,5 @@
 const colors = require('tailwindcss/colors')
-
+/* blue */
 module.exports = {
   purge: [],
   presets: [],

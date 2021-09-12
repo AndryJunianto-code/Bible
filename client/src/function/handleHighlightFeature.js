@@ -8,7 +8,7 @@ const colorObj = {
     yellow:3
 }
 const handleHighlightFeature = async (color,highlightData,title,lastClick,dispatch,highlightRefetch,user) => {
-    if(highlightData.length === 0) {
+    if(highlightData && highlightData.length === 0) {
         let res;
         if(color === 'blue') {
             res = await axios.post('/highlight', {
@@ -58,14 +58,15 @@ const handleHighlightFeature = async (color,highlightData,title,lastClick,dispat
     } else {
         let temp = [...lastClick]
         for(let i = 0; i < temp.length;i++) {
-            if(temp[i][0] + temp[i][1] === "##") {
-                let split = temp[i].split('##')
+            if(temp[i].verse[0] + temp[i].verse[1] === "##") {
+                let split = temp[i].verse.split('##')
                 let color = split[1]
-                temp[i] = split[2]/* VERSE */
+                let verse = split[2]/* VERSE */
+                temp[i] = {...temp[i],verse:verse}
                 await axios.put(`/highlight/remove/${color}`, {
                     title:title.bookTitle + "_" + title.chapter,
                     userId:user.sub,
-                    verses:temp[i]
+                    verses:temp[i]  
                 })
             }
         }

@@ -18,3 +18,12 @@ export const fetchHighlight = async(obj) => {
     const {data} = await axios.get(`/highlight/${title}/${userId}`)
     return data
 }
+
+export const fetchHighlightedVerse = async(obj) => {
+    const userId = obj.queryKey[1]
+    const color = obj.queryKey[2]
+    const {data} = await axios.get(`highlight/getHighlight/${userId}/${color}`, {
+        userId:userId
+    })
+    return data
+}
