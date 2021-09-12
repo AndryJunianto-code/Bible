@@ -27,7 +27,7 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
                 dispatch(handleLastClick({data:[...lastClick,{verseNum:v.verseId,verse:e.target.textContent,...title}]}))
             }
         } else {
-            dispatch(handleLastClick({data:lastClick.filter(v=>v.verse !== e.target.textContent)}))
+            dispatch(handleLastClick({data:lastClick.filter(v=> !v.verse.includes(e.target.textContent))}))
         }   
     }    
     useEffect(async ()=> {

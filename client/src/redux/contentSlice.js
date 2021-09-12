@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import books from '../data/books'
 
 export const contentSlice = createSlice({
     name:"content",
     initialState:{
         user:{},
-        title:{bookTitle:'Genesis',chapter:1},
-        currentBookNum:1,
-        currentChapter:1
+        title:  {bookTitle:JSON.parse(localStorage.getItem('lastRead')).bookTitle || 1,
+                chapter:JSON.parse(localStorage.getItem('lastRead')).chapter || 1},
+        currentBookNum:books.indexOf(JSON.parse(localStorage.getItem('lastRead')).bookTitle)+1 || 1,
+        currentChapter:JSON.parse(localStorage.getItem('lastRead')).chapter || 1
     },
     reducers:{
         setUser:(state,action)=> {

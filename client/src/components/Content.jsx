@@ -58,7 +58,10 @@ export default function Content() {
         if(isAuthenticated) {
             refetchHighlight()
         }
-    },[isAuthenticated,user])
+    },[user])
+    useEffect(()=> {
+        localStorage.setItem('lastRead',JSON.stringify(title))
+    },[verses])
     return (
         <>
         {versesSuccess && <div className='w-full col-span-2 relative'>

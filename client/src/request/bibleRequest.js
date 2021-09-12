@@ -27,3 +27,9 @@ export const fetchHighlightedVerse = async(obj) => {
     })
     return data
 }
+
+export const fetchBookmark = async (obj) => {
+    const userId = obj.queryKey[1]
+    const {data} = await axios.get(`/bookmark/${userId}`)
+    return data
+}

@@ -49,7 +49,9 @@ body::-webkit-scrollbar-thumb:hover {
  .height86{
    height: 86%;
  }
-
+.height90{
+  height: 95%;
+}
  .blueHighlight{
    background-color: rgb(171, 212, 247) 
  }

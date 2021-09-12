@@ -4,6 +4,7 @@ const dotenv=  require('dotenv')
 const cors = require('cors')
 const BibleRoute = require('./routes/BibleRoute')
 const HighlightRoute = require('./routes/HighlightRoute')
+const BookmarkRoute = require('./routes/BookmarkRoute')
 
 const app = express();
 app.use(express.json())
@@ -12,6 +13,7 @@ dotenv.config()
 
 app.use('/api/bible',BibleRoute)
 app.use('/api/highlight',HighlightRoute)
+app.use('/api/bookmark',BookmarkRoute)
 
 mongoose.connect(process.env.DB_URI, {
     useUnifiedTopology:true,

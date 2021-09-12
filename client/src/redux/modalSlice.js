@@ -7,7 +7,8 @@ export const modalSlice = createSlice({
         isContentFullDisplay:true,
         lastClick:[],
         isHighlightModalOpen:false,
-        isAccountModalOpen:false
+        isAccountModalOpen:false,
+        isBookmarkModalOpen:false,
     },
     reducers:{
         handleBooksModal:(state,action)=> {
@@ -30,9 +31,19 @@ export const modalSlice = createSlice({
         },
         handleAccountModal:(state,action)=>{
             state.isAccountModalOpen = action.payload.bool
+        },
+        handleBookmarkModal:(state,action)=>{
+            state.isBookmarkModalOpen = action.payload.bool
         }
     }
 })
 
-export const {handleBooksModal,handleContentDisplay,handleLastClick,closeHighlightModal,handleAccountModal} = modalSlice.actions
+export const {
+    handleBooksModal,
+    handleContentDisplay,
+    handleLastClick,
+    closeHighlightModal,
+    handleAccountModal,
+    handleBookmarkModal,
+} = modalSlice.actions
 export default modalSlice.reducer
