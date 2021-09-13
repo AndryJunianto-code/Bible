@@ -10,6 +10,7 @@ import {useAuth0} from '@auth0/auth0-react'
 export default function DesktopNavbar() {
     const dispatch = useDispatch()
     const {isAccountModalOpen} = useSelector(state => state.modal)
+    const {isFullScreen} = useSelector(state=>state.content)
     const {user} = useAuth0()
 
     const accountModal = () => {
@@ -17,7 +18,7 @@ export default function DesktopNavbar() {
     }
     
     return (
-        <div className='flex justify-between items-center bg-gray-100 py-3 px-12 text-xs border-b border-gray-200'>
+        <div className={`${isFullScreen && 'hidden'} flex justify-between items-center bg-gray-100 py-3 px-12 text-xs border-b border-gray-200`}>
             <h1>Logo</h1>
             <main className='flex items-center'>
                 <div><SettingsIcon style={{color:'rgb(50,50,50)',width:'20px',height:'20px'}}/></div>

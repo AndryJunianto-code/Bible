@@ -46,12 +46,17 @@ body::-webkit-scrollbar-thumb:hover {
    height: calc(100vh - 10rem);
    overflow-y: auto;
  }
+ .contentHeightFull{
+   height: calc(100vh - 7rem);
+   overflow-y:auto;
+ }
  .height86{
    height: 86%;
  }
 .height90{
   height: 95%;
 }
+
  .blueHighlight{
    background-color: rgb(171, 212, 247) 
  }
@@ -67,3 +72,5 @@ body::-webkit-scrollbar-thumb:hover {
  .selectedHighlight{
    background-color: rgb(240, 240, 240) !important;
  }
+
+ 

@@ -42,3 +42,8 @@ export const postBookmark = async (obj) => {
     })
     return data
 }
+
+export const deleteBookmark = async(obj) => {
+    const {data} = await axios.delete(`/bookmark/${obj._id}`)
+    return data
+}
