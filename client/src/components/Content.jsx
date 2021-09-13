@@ -11,6 +11,7 @@ import { setCurrentBookNum, setCurrentChapter, setTitle} from '../redux/contentS
 import { handleLastClick } from '../redux/modalSlice';
 import {useQuery} from 'react-query'
 import {useAuth0} from '@auth0/auth0-react'
+import SkeletonVerses from './loading/SkeletonVerses'
 
 export default function Content() {
     const {width} = useViewportContext()
@@ -20,7 +21,7 @@ export default function Content() {
     const dispatch = useDispatch()
     const {isAuthenticated} = useAuth0()
     
-    const {data:verses,isSuccess:versesSuccess} = useQuery(['fetchChapterContent',currentBookNum,currentChapter],fetchChapterContent,{retryDelay:1000})
+    const {data:verses,isSuccess:versesSuccess,isLoading:versesLoading} = useQuery(['fetchChapterContent',currentBookNum,currentChapter],fetchChapterContent,{retryDelay:1000})
     let varBookNum = currentBookNum
     let varChapter = currentChapter
     let beginning = currentChapter === 1 && currentBookNum === 1
@@ -60,8 +61,17 @@ export default function Content() {
         }
     },[user])
     useEffect(()=> {
+        window.scrollTo({top:0})
         localStorage.setItem('lastRead',JSON.stringify(title))
     },[verses])
+    
+    if(versesLoading) return (
+        <div className="w-full col-span-2 relative">
+            <div className={`mx-auto pt-6 mb-5 w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && `xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 customizeScroll ${width >= 768 && 'contentHeight'}`}`}>
+                <SkeletonVerses/>
+            </div>
+        </div>
+    )
     return (
         <>
         {versesSuccess && <div className='w-full col-span-2 relative'>

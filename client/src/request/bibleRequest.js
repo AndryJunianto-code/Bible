@@ -33,3 +33,12 @@ export const fetchBookmark = async (obj) => {
     const {data} = await axios.get(`/bookmark/${userId}`)
     return data
 }
+
+export const postBookmark = async (obj) => {
+    const {data} = await axios.post('/bookmark', {
+        userId:obj.userId,
+        color:obj.color,
+        info:obj.info
+    })
+    return data
+}

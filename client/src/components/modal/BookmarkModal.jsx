@@ -2,20 +2,28 @@ import { useState } from 'react'
 import ReactDom from 'react-dom'
 import {handleBookmarkModal} from '../../redux/modalSlice'
 import { useDispatch,useSelector } from 'react-redux'
-import axios from 'axios'
+import { fetchBookmark } from '../../request/bibleRequest'
+import {useMutation,useQuery} from 'react-query'
+import {postBookmark} from '../../request/bibleRequest'
 
 export default function BookmarkModal() {
     const dispatch = useDispatch()
     const {user,title} = useSelector(state => state.content)
     const [selectColor,setSelectColor] = useState('bg-blue-400')
 
+    const {refetch:refetchBookmark} = useQuery(
+        ['fetchBookmark',user?.sub], fetchBookmark,{retryDelay:1000}
+    )
+    const {mutate} = useMutation(postBookmark,{
+        onSuccess:(data)=>{
+            refetchBookmark()
+        },
+        onSettled:()=>{
+            dispatch(handleBookmarkModal({bool:false}))
+        }
+    })
     const submitBookmark = async () => {
-        await axios.post('/bookmark', {
-            userId:user.sub,
-            color:selectColor,
-            info:title
-        })
-        closeBookmarkModal()
+        mutate({userId:user?.sub,color:selectColor,info:title})
     }
     const handleSelectColor = (e) => {
         setSelectColor(e.target.getAttribute('data-color'))

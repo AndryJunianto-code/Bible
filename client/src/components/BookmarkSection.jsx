@@ -11,13 +11,14 @@ export default function BookmarkSection() {
         ['fetchBookmark',user?.sub], fetchBookmark,{retryDelay:1000}
     )
     return (
-        <div className='h-full w-full pb-3'>
-            {bookmarkSuccess && 
+        <>
+        {bookmarkSuccess && <div className='h-full w-full pb-3'>
             <section className='height90 overflow-y-scroll customizeScroll'>
                {bookmarkData.map(b=>(
                    <Bookmark bookmark={b} key={b._id}/>
                ))}
-            </section>}
-        </div>
+            </section>
+        </div>}
+        </>
     )
 }

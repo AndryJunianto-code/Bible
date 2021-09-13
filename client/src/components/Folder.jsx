@@ -4,6 +4,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import HighlightSection from './HighlightSection'
 import BookmarkSection from './BookmarkSection';
+import JournalSection from './JournalSection'
 
 export default function Folder() {
     const [selectedSection,setSelectedSection] = useState("Highlight")
@@ -25,7 +26,9 @@ export default function Folder() {
             {selectedSection === 'Highlight' ? 
                 <HighlightSection selectedColor={selectedColor} setSelectedColor={setSelectedColor}/>:
              selectedSection === 'Bookmark' ?
-                <BookmarkSection/> : ''}
+                <BookmarkSection/> : 
+             selectedSection === 'Journal' ?
+                <JournalSection/>: ''}
         </div>
     )
 }
