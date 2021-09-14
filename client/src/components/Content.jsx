@@ -74,7 +74,7 @@ export default function Content() {
     )
     return (
         <>
-        {versesSuccess && <div className='w-full col-span-2 relative dark:text-gray-300 dark:text-opacity-80'>
+        {versesSuccess && <div className='w-full col-span-2 relative darkTextBasic'>
                 <div className={`mx-auto pt-6 mb-5 w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && `xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 customizeScroll ${width >= 768 && `${isFullScreen ? 'contentHeightFull':'contentHeight'}`}`}`}>
                     {verses.map((v)=> (
                         <Verse v={v} key={v.id} handleLastClick={handleLastClick} lastClick={lastClick} highlightData={highlightData}/>

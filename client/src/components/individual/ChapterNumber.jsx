@@ -19,6 +19,6 @@ export default function ChapterNumber({index,n,book}) {
     }
     const {refetch} = useQuery(['fetchChapterContent',currentBookNum,currentChapter],fetchChapterContent,{retryDelay:1000,enabled:false})
     return (
-        <p onClick={fetchContent} booknum={index+1} booktitle={book.name}>{n}</p>
+        <p className='dark:text-gray-300' onClick={fetchContent} booknum={index+1} booktitle={book.name}>{n}</p>
     )
 }

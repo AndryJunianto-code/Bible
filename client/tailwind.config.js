@@ -8,7 +8,8 @@ module.exports = {
     extend:{
       colors:{
         darkBlack:'#121212',
-        lightBlack:'#1c1c1c'
+        lightBlack:'#1c1c1c',
+        modalBlack:'#242424',
       }
     },
     screens: {

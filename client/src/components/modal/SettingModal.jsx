@@ -14,7 +14,7 @@ export default function SettingModal() {
     }
     return ReactDom.createPortal(
         <div className='modalBackground' onClick={closeSettingModal}>
-            <div className={`bg-white absolute ${isFullScreen ?'top-9' :'top-24'} right-28 w-72 h-auto overflow-y-auto shadow-md border-2 border-gray-200`} onClick={e=>e.stopPropagation()}>
+            <div className={`bg-white dark:bg-modalBlack dark:border-opacity-40 absolute ${isFullScreen ?'top-9' :'top-24'} right-28 w-72 h-auto overflow-y-auto shadow-md border border-gray-200 rounded-md`} onClick={e=>e.stopPropagation()}>
                 <div className='px-8 py-5'>
                     <ThemeSection/>
                     <FontSection/>

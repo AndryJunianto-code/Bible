@@ -22,7 +22,7 @@ export default function DesktopNavbar() {
                     <input type="text" className='pl-6 pr-1 py-1 border border-gray-200 text-sm rounded-sm text-gray-600 focus:outline-none focus:border-blue-400 dark:bg-lightBlack dark:border-opacity-40 dark:focus:border-opacity-100 dark:text-gray-300'/>
                 </div>
                 <div onClick={accountModal}>
-                    {user ? <img src={user.picture} className='rounded-full w-12' alt='user'/>:
+                    {user.picture ? <img src={user.picture} className='rounded-full w-12' alt='user'/>:
                     <PersonIcon style={{color:`${storageTheme === 'light' ? 'rgb(60, 60, 60)':'#ebebeb'}`,width:'22px',height:'22px'}}/>}
                 </div>
                 {isAccountModalOpen && <AccountModal/>}

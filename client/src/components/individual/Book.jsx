@@ -20,7 +20,7 @@ export default function Book({OT,NT,book,index}) {
             {OT ? (
              <section>
              <h1 className='text-sm mb-1 tracking-widest text-blue-400 font-bold'>Old Testament</h1>
-             <p className='text-gray-700' onClick={handleOpenChapter}>{book.name}</p>
+             <p className='text-gray-700 darkTextBasic' onClick={handleOpenChapter}>{book.name}</p>
              {isChapterOpen.bool && isChapterOpen.book === book.name && 
                 <div className='grid grid-cols-5 h-full overflow-hidden'>
                     {num.map(n=>(
@@ -32,7 +32,7 @@ export default function Book({OT,NT,book,index}) {
              NT? (
                 <section>
                 <h1 className='text-sm tracking-widest text-blue-400 font-bold mb-1 mt-4'>New Testament</h1>
-                <p className='text-gray-700' onClick={handleOpenChapter}>{book.name}</p>
+                <p className='text-gray-700 darkTextBasic' onClick={handleOpenChapter}>{book.name}</p>
                 {isChapterOpen.bool && isChapterOpen.book === book.name && 
                     <div className='grid grid-cols-5 h-full overflow-hidden'>
                         {num.map(n=>(
@@ -42,7 +42,7 @@ export default function Book({OT,NT,book,index}) {
                 </section>
              ): (
                 <section>
-                    <p className='text-gray-700' onClick={handleOpenChapter}>{book.name}</p>
+                    <p className='text-gray-700 darkTextBasic' onClick={handleOpenChapter}>{book.name}</p>
                         {isChapterOpen.bool && isChapterOpen.book === book.name && 
                         <div className='grid grid-cols-5 h-full overflow-hidden'>
                             {num.map(n=>(

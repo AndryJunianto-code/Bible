@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function FontSection() {
     return (
-        <section className='mt-4'>
-            <h1 className='tracking-wider font-semibold'>Font Settings</h1>
+        <section className='mt-4 darkTextBasic'>
+            <h1 className='tracking-wider font-semibold dark:text-gray-200'>Font Settings</h1>
             <div className='flex items-center justify-between mt-4 mb-6'>
                 <p>Size</p>
                 <select className='settingSelect'>
@@ -26,7 +26,7 @@ export default function FontSection() {
             </div>
             <div className='flex items-center justify-between mt-6'>
                 <p>Thickness</p>
-                <input type="range" name="" id="" className='w-28' min='100' max='500' step='100'/>
+                <input type="range" className='w-28' min='100' max='500' step='100'/>
             </div>
         </section>
     )
