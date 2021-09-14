@@ -3,13 +3,17 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   purge: [],
   presets: [],
-  darkMode: 'class', // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class',
   theme: {
     extend:{
       colors:{
         darkBlack:'#121212',
         lightBlack:'#1c1c1c',
         modalBlack:'#242424',
+        blueHL:"rgb(171, 212, 247)",
+        yellowHL:"rgb(255, 240, 122)",
+        greenHL:"rgb(184, 228, 131)",
+        pinkHL:"rgb(255, 179, 235)"
       }
     },
     screens: {

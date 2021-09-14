@@ -24,11 +24,13 @@ export default function Main() {
         }
     }
     useEffect(()=> {
-        user && dispatch(setUser({data:user}))
-        if(JSON.parse(localStorage.getItem('theme'))) {
-            setTheme(JSON.parse(localStorage.getItem('theme')))
-        } else {
-            localStorage.setItem('theme',JSON.stringify('light'))
+        if(user) {
+            dispatch(setUser({data:user}))
+            if(JSON.parse(localStorage.getItem(`theme-${user?.sub}`))) {
+                setTheme(JSON.parse(localStorage.getItem(`theme-${user?.sub}`)))
+            } else {
+                localStorage.setItem(`theme-${user?.sub}`,JSON.stringify('light'))
+            }
         }
     },[user])
     return (

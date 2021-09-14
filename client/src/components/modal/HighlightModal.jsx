@@ -31,7 +31,7 @@ export default function HighlightModal() {
     )
     
     return (
-        <div className='absolute top-10 right-0 bg-gray-50 w-40 h-40 shadow-sm rounded-sm border border-gray-100' onClick={e=>e.stopPropagation()}>
+        <div className='absolute top-10 right-0 bg-gray-50 text-gray-800 dark:text-gray-300 dark:bg-modalBlack w-40 h-40 shadow-md rounded-md border border-gray-100 dark:border-opacity-30' onClick={e=>e.stopPropagation()}>
             <section className='flex flex-col p-3' onClick={checkUserExist}>
                 <div className='flex'>
                     <div onClick={()=>handleHighlightFeature('blue',highlightData,title,lastClick,dispatch,highlightRefetch,user)}><CreateIcon style={{color:'blue'}}/></div>

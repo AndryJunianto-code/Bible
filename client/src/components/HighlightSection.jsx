@@ -5,17 +5,18 @@ import { fetchHighlightedVerse } from '../request/bibleRequest'
 import CreateIcon from '@material-ui/icons/Create';
 import HighlightedVerse from './individual/HighlightedVerse';
 import {v4} from 'uuid'
+import useScroll from '../hooks/useScroll'
 
 export default function HighlightSection({selectedColor,setSelectedColor}) {
     const {user} = useSelector(state => state.content)
-    
+    const scrollTheme = useScroll()
     const {data:highlightedVerses,isSuccess:highlightedSuccess} = useQuery(
         ['fetchHighlightedVerse',user?.sub,selectedColor],fetchHighlightedVerse,{retryDelay:1000}
     )
     return (
         <div className='relative h-full w-full'>
             {highlightedSuccess && 
-            <section className='height86 overflow-y-scroll customizeScroll'>
+            <section className={`height86 overflow-y-auto ${scrollTheme}`}>
                {highlightedVerses.map(book=>(
                    book.map(v=>(
                        <HighlightedVerse v={v} key={v4()}/>

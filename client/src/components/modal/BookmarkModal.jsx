@@ -33,13 +33,13 @@ export default function BookmarkModal() {
     }
     return ReactDom.createPortal(
         <div className='fixed top-0 left-0 right-0 bottom-0 z-20 bg-black bg-opacity-50' onClick={closeBookmarkModal}>
-            <div className='bg-gray-100 flex flex-col fixed top-32 left-1/2 w-80 h-52 pb-1.5 rounded-md transform -translate-x-1/2' onClick={e=>e.stopPropagation()}>
-                <h1 className='text-sm border-b border-black border-opacity-30 rounded-t-md py-1.5 text-center tracking-wider bg-gray-700 text-gray-100'>Bookmark</h1>
-                <section className='flex px-6 mt-3 items-center'>
+            <div className='bg-gray-100 flex flex-col fixed top-32 left-1/2 dark:bg-modalBlack w-80 h-52 pb-1.5 rounded-md transform -translate-x-1/2' onClick={e=>e.stopPropagation()}>
+                <h1 className='text-sm border-b border-black border-opacity-30 rounded-t-md py-1.5 text-center tracking-wider bg-gray-700 dark:bg-modalBlack text-gray-200'>Bookmark</h1>
+                <section className='flex px-6 mt-3 items-center text-gray-300'>
                     <p className='mr-2 text-sm'>Verse :</p>
                     <p className='font-semibold text-lg'>{title.bookTitle} {title.chapter}</p>
                 </section>
-                <section className='flex px-6 mt-3 w-full'>
+                <section className='flex px-6 mt-3 w-full text-gray-300'>
                     <p className='text-sm'>Color :</p>
                     <section className='grid grid-cols-5 w-1/2 gap-1 ml-2 mt-1.5' onClick={handleSelectColor}>
                         <div data-color='bg-blue-400' className={`bg-blue-400  ${selectColor === 'bg-blue-400' && 'border-2 border-blue-600'} w-6 h-6 rounded-sm`}></div>
@@ -51,7 +51,7 @@ export default function BookmarkModal() {
                         <div data-color='bg-green-400' className={`bg-green-400  ${selectColor === 'bg-green-400' && 'border-2 border-green-600'} w-6 h-6 rounded-sm`}></div>
                     </section>
                 </section>
-                <button onClick={submitBookmark} className='mt-5 mx-3 bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-linear rounded-sm tracking-wider px-3 py-1.5 text-gray-100 text-sm'>Done</button>
+                <button onClick={submitBookmark} className='mt-5 mx-3 bg-blue-500 hover:bg-blue-600 dark:bg-blue-300 dark:hover:bg-blue-400 dark:bg-opacity-90 dark:text-black transition-all duration-150 ease-linear rounded-sm tracking-wider px-3 py-1.5 text-gray-100 text-sm'>Done</button>
             </div>
         </div>,
         document.getElementById('portal')

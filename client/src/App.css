@@ -16,11 +16,30 @@
 .customizeScroll::-webkit-scrollbar-thumb {
     background:rgb(156, 197, 247);
     border-radius: 30px;
-  }
+}
   
   /* Handle on hover */
 .customizeScroll::-webkit-scrollbar-thumb:hover {
     background:rgb(137, 190, 255);
+}
+
+.darkScroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.darkScroll::-webkit-scrollbar-track {
+  background: #303030;
+}
+
+/* Handle */
+.darkScroll::-webkit-scrollbar-thumb {
+  background:rgb(156, 197, 247);
+  border-radius: 30px;
+}
+
+/* Handle on hover */
+.darkScroll::-webkit-scrollbar-thumb:hover {
+  background:rgb(137, 190, 255);
 }
 
 body::-webkit-scrollbar {
@@ -30,7 +49,9 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-track {
   background: #bebebe;
 }
-
+body.dark::-webkit-scrollbar-track {
+  background: #303030;
+}
 /* Handle */
 body::-webkit-scrollbar-thumb {
   background:rgb(156, 197, 247);
@@ -56,9 +77,6 @@ body::-webkit-scrollbar-thumb:hover {
 .height90{
   height: 95%;
 }
-.test{
-  background-color: #242424;
-}
 
  .blueHighlight{
    background-color: rgb(171, 212, 247) 
@@ -72,8 +90,11 @@ body::-webkit-scrollbar-thumb:hover {
  .pinkHighlight{
    background-color: rgb(255, 179, 235) 
  }
- .selectedHighlight{
-   background-color: rgb(240, 240, 240) !important;
+ .selectedHL{
+   background-color: rgb(233, 233, 233) !important;
+ }
+ .selectedHLDark{
+  background-color: rgb(55, 55, 55) !important;
  }
 
  

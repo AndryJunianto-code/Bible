@@ -15,8 +15,8 @@
     @apply opacity-50 hover:opacity-100 transition-all duration-200 ease-linear;
 }
 .settingSelect{
-    @apply focus:outline-none border-2 focus:border-blue-400 p-1 rounded-md dark:bg-modalBlack dark:border-gray-500  dark:focus:border-blue-400
-}
+    @apply focus:outline-none border-2 focus:border-blue-400 p-1 rounded-md dark:bg-modalBlack dark:border-gray-500  dark:focus:border-blue-400;
+}   
 .darkTextBasic{
     @apply dark:text-gray-300 dark:text-opacity-80;
 }

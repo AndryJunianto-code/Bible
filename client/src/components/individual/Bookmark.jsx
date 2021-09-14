@@ -35,14 +35,14 @@ export default function Bookmark({bookmark}) {
         mutate({_id:bookmark._id})
     }
     return (
-        <div onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave} className={`${isLoading && 'animate-pulse'} border-b border-gray-600 border-opacity-30 hover:${hoverColor}`}>
+        <div onMouseEnter={handleMouseOver} onMouseLeave={handleMouseLeave} className={`${isLoading && 'animate-pulse'} border-b border-gray-600 border-opacity-30 dark:border-opacity-100 hover:${hoverColor} dark:text-gray-300 dark:hover:bg-opacity-80 dark:hover:text-darkBlack`}>
             <div className='flex justify-between relative'>
                 <section className='flex items-center w-full px-3 py-3' onClick={fetchBookmarkedVerse}>
                     <div className={`${color} w-8 h-8 rounded-sm mr-3`}></div>
                     <h3 className='font-semibold tracking-wider text-lg'>{info.bookTitle} {info.chapter}</h3>
                 </section>
                 {isMouseHover && <section onClick={clickDeleteBookmark} className='absolute top-1/2 right-3 transform -translate-y-1/2'>
-                    <DeleteOutlineIcon style={{color:'rgb(245, 85, 49)'}}/>
+                    <DeleteOutlineIcon style={{color:'rgb(237, 52, 52)'}}/>
                 </section>}
             </div>
         </div>

@@ -12,9 +12,10 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
     const [highlightColor,setHighlightColor] = useState('none')
     const isHighlightModalOpen = useSelector(state => state.modal.isHighlightModalOpen)
     const {title} = useSelector(state=>state.content)
+    const {storageTheme} = useSelector(state => state.setting)   
     const dispatch = useDispatch()
     const isLastClick = lastClick[lastClick.length-1] && lastClick[lastClick.length-1].verse.includes(v.verse)
-    const paragraphHighlight = highlightColor === 'blue' ? 'blueHighlight' : highlightColor === 'green' ? 'greenHighlight' : highlightColor === 'pink' ? 'pinkHighlight' : highlightColor === 'yellow' ? 'yellowHighlight' : ''
+    const paragraphHighlight = highlightColor === 'blue' ? 'bg-blueHL dark:text-blueHL' : highlightColor === 'green' ? 'bg-greenHL dark:text-greenHL' : highlightColor === 'pink' ? 'bg-pinkHL dark:text-pinkHL' : highlightColor === 'yellow' ? 'bg-yellowHL dark:text-yellowHL' : ''
 
     const selectVerse  = (e) => {
         const dataHighlight = e.target.getAttribute('data-highlight')
@@ -53,7 +54,7 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
     return (
         <div className={`flex ${isLastClick && 'relative'}`}>
             <p className='text-xmd mr-0.5 leading-8'>{v.verseId}</p>
-            <p className={`mt-0.5 px-1 py-0.5 rounded-md ${paragraphHighlight} ${isSelected && 'selectedHighlight'}`} 
+            <p className={`mt-0.5 px-1 py-0.5 rounded-md dark:bg-transparent ${paragraphHighlight} ${isSelected && `selectedHL ${storageTheme === 'light' ? 'selectedHL':'selectedHLDark'}`}`} 
                 onClick={selectVerse} data-highlight={highlightColor}
                 data-click="verse">{v.verse}</p>
             {lastClick.length > 0 && isLastClick && isHighlightModalOpen &&<HighlightModal/>} 
