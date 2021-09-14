@@ -9,6 +9,7 @@ export const modalSlice = createSlice({
         isHighlightModalOpen:false,
         isAccountModalOpen:false,
         isBookmarkModalOpen:false,
+        isSettingModalOpen:false,
     },
     reducers:{
         handleBooksModal:(state,action)=> {
@@ -34,6 +35,9 @@ export const modalSlice = createSlice({
         },
         handleBookmarkModal:(state,action)=>{
             state.isBookmarkModalOpen = action.payload.bool
+        },
+        handleSettingModal:(state,action)=>{
+            state.isSettingModalOpen = action.payload.bool
         }
     }
 })
@@ -45,5 +49,6 @@ export const {
     closeHighlightModal,
     handleAccountModal,
     handleBookmarkModal,
+    handleSettingModal,
 } = modalSlice.actions
 export default modalSlice.reducer

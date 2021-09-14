@@ -10,7 +10,7 @@ import AuthProvider from './auth/AuthProvider';
 import { QueryClientProvider,QueryClient } from 'react-query';
 import axios from 'axios';
 
-const baseUrl = /* 'https://abible.herokuapp.com/api' */ "http://localhost:5000/api"
+const baseUrl = 'https://abible.herokuapp.com/api' /* "http://localhost:5000/api" */
 axios.defaults.baseURL = baseUrl
 
 const client = new QueryClient({

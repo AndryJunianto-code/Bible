@@ -12,7 +12,7 @@ export default function AccountModal() {
     }
     return ReactDom.createPortal(
         <div className='modalBackground' onClick={closeAccountModal}>
-            <div className="py-3 bg-gray-100 w-36 h-auto absolute top-14 right-12 shadow-md border border-gray-200 rounded-sm" onClick={e=>e.stopPropagation()}>
+            <div className="py-3 bg-gray-100 w-36 h-auto absolute top-14 right-12 shadow-md border-2 border-gray-200 rounded-sm" onClick={e=>e.stopPropagation()}>
                 <AuthenticationButton/>
             </div>
         </div>,
