@@ -16,6 +16,7 @@ export default function Main() {
     const dispatch = useDispatch()
     const {user} = useAuth0()
     const [colorTheme,setTheme] = useTheme()
+    const {storageTheme} = useSelector(state=>state.setting)
 
     const handleHighlightModal = (e) => {
         const isVerse = e.target.getAttribute('data-click') === 'verse'
@@ -26,11 +27,6 @@ export default function Main() {
     useEffect(()=> {
         if(user) {
             dispatch(setUser({data:user}))
-            if(JSON.parse(localStorage.getItem(`theme-${user?.sub}`))) {
-                setTheme(JSON.parse(localStorage.getItem(`theme-${user?.sub}`)))
-            } else {
-                localStorage.setItem(`theme-${user?.sub}`,JSON.stringify('light'))
-            }
         }
     },[user])
     return (

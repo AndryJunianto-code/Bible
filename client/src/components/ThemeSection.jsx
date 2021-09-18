@@ -6,11 +6,9 @@ import { useSelector } from 'react-redux';
 
 export default function ThemeSection() {
     const [colorTheme,setTheme] = useTheme()
-    const storageTheme = useSelector(state => state.setting.storageTheme)
-    const user = useSelector(state => state.content.user)
+    const {storageTheme} = useSelector(state => state.setting)
 
     const handleTheme = (type) => {
-        localStorage.setItem(`theme-${user?.sub}`,JSON.stringify(type))
         setTheme(type)
     }
     const iconStyle = {color:`${storageTheme === 'dark' ? '#c4c4c4': '#474747'}`,width:'30px',height:'30px'}

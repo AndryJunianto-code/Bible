@@ -4,7 +4,8 @@ import {handleTheme} from '../redux/settingSlice'
 
 export default function useTheme() {
     const user = useSelector(state=>state.content.user)
-    const [theme,setTheme] = useState(JSON.parse(localStorage.getItem(`theme-${user?.sub}`)) || 'light')
+    const {storageTheme} = useSelector(state=>state.setting)
+    const [theme,setTheme] = useState(storageTheme)
     const colorTheme = theme === 'light'?'dark':'light'
     const dispatch = useDispatch()
     useEffect(()=> {
@@ -14,7 +15,8 @@ export default function useTheme() {
         body.classList.remove(colorTheme)
         root.classList.add(theme)
         body.classList.add(theme)
+        localStorage.setItem(`setting`, JSON.stringify(theme))
         dispatch(handleTheme({data:theme}))
-    },[theme,colorTheme])
+    },[theme,colorTheme,user])
     return [colorTheme,setTheme]
 }
