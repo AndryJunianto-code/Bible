@@ -19,6 +19,7 @@ export default function Content() {
     const {currentBookNum,currentChapter,user,isFullScreen} = useSelector(state => state.content)
     const title = useSelector(state => state.content.title)
     const {isContentFullDisplay,lastClick} = useSelector(state => state.modal)
+    const {justified} = useSelector(state=>state.setting.font)
     const scrollTheme = useScroll()
     const dispatch = useDispatch()
     const {isAuthenticated} = useAuth0()
@@ -51,6 +52,7 @@ export default function Content() {
             varChapter++
             dispatch(setCurrentChapter({chapter:currentChapter+1}))
         }
+        console.log(currentBookNum,currentChapter)
         dispatch(setTitle({bookTitle:books[varBookNum-1],chapter:varChapter}))
     }
 
@@ -77,7 +79,7 @@ export default function Content() {
     return (
         <>
         {versesSuccess && <div className='w-full col-span-2 relative darkTextBasic'>
-                <div className={`mx-auto pt-6 mb-5 w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && `xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 ${scrollTheme} ${width >= 768 && `${isFullScreen ? 'contentHeightFull':'contentHeight'}`}`}`}>
+                <div className={`${justified && 'text-justify'} mx-auto pt-6 mb-5 w-10/12 md:w-2/3 lg:w-3/5 xl:w-5/12 ${!isContentFullDisplay && `xl:w-full lg:w-full md:w-full w-full xl:px-36 lg:px-24 md:px-12 ${scrollTheme} ${width >= 768 && `${isFullScreen ? 'contentHeightFull':'contentHeight'}`}`}`}>
                     {verses.map((v)=> (
                         <Verse v={v} key={v.id} handleLastClick={handleLastClick} lastClick={lastClick} highlightData={highlightData}/>
                     ))}

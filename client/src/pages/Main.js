@@ -16,7 +16,7 @@ export default function Main() {
     const dispatch = useDispatch()
     const {user} = useAuth0()
     const [colorTheme,setTheme] = useTheme()
-    const {storageTheme} = useSelector(state=>state.setting)
+    const {font,storageTheme} = useSelector(state=>state.setting)
 
     const handleHighlightModal = (e) => {
         const isVerse = e.target.getAttribute('data-click') === 'verse'
@@ -29,6 +29,12 @@ export default function Main() {
             dispatch(setUser({data:user}))
         }
     },[user])
+    useEffect(()=>{
+        setTheme(storageTheme)
+    },[storageTheme])
+    useEffect(()=> {
+        localStorage.setItem('setting-font',JSON.stringify(font))
+    },[font])
     return (
         <div className='pb-7 dark:bg-darkBlack min-h-screen h-auto' onClick={handleHighlightModal}>
             {width < 768 ? <PhoneNavbar/> : <ParentNavbar/>}

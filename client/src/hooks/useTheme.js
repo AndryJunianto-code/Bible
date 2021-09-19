@@ -15,7 +15,7 @@ export default function useTheme() {
         body.classList.remove(colorTheme)
         root.classList.add(theme)
         body.classList.add(theme)
-        localStorage.setItem(`setting`, JSON.stringify(theme))
+        localStorage.setItem('setting-theme', JSON.stringify(theme))
         dispatch(handleTheme({data:theme}))
     },[theme,colorTheme,user])
     return [colorTheme,setTheme]

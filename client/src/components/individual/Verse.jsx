@@ -12,10 +12,15 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
     const [highlightColor,setHighlightColor] = useState('none')
     const isHighlightModalOpen = useSelector(state => state.modal.isHighlightModalOpen)
     const {title} = useSelector(state=>state.content)
-    const {storageTheme} = useSelector(state => state.setting)   
+    const {storageTheme,font} = useSelector(state => state.setting)   
     const dispatch = useDispatch()
     const isLastClick = lastClick[lastClick.length-1] && lastClick[lastClick.length-1].verse.includes(v.verse)
     const paragraphHighlight = highlightColor === 'blue' ? 'bg-blueHL dark:text-blueHL' : highlightColor === 'green' ? 'bg-greenHL dark:text-greenHL' : highlightColor === 'pink' ? 'bg-pinkHL dark:text-pinkHL' : highlightColor === 'yellow' ? 'bg-yellowHL dark:text-yellowHL' : ''
+    const verseNumSize = font?.size === 'extra-small' ? 'text-xmd leading-7' : font?.size === 'small' ? 'text-xs leading-8' : font?.size === 'medium' ? 'text-xs leading-8' : font?.size === 'large' ? 'text-sm leading-9' : font?.size === 'extra-large' ? 'text-sm leading-9' : ''
+    const verseSize = font?.size === 'extra-small' ? 'text-sm' : font?.size === 'small' ? 'text-md' : font?.size === 'medium' ? 'text-lg' : font?.size === 'large' ? 'text-xl' : font?.size === 'extra-large' ? 'text-2xl' : ''
+    const verseStyle = font?.style === 'sans' ? 'font-sans' : font?.style === 'serif' ? 'font-serif' : font?.style === 'mono' ? 'font-mono' : font?.style === 'roboto' ? 'font-roboto' : font?.style === 'acme' ? 'font-acme' : ''
+    const verseThickness = font?.thickness === '100' ? 'font-light' : font?.thickness === '200' ? 'font-normal' : font?.thickness === '300' ? 'font-semibold' : font?.thickness === '400' ? 'font-bold' : ''
+    const verseSpacing = font?.space === '1' ? 'mb-0' : font?.space === '2' ? 'mb-1' : font?.space === '3' ? 'mb-1.5' : ''
 
     const selectVerse  = (e) => {
         const dataHighlight = e.target.getAttribute('data-highlight')
@@ -52,9 +57,9 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
         }
     },[highlightData])
     return (
-        <div className={`flex ${isLastClick && 'relative'}`}>
-            <p className='text-xmd mr-0.5 leading-8'>{v.verseId}</p>
-            <p className={`mt-0.5 px-1 py-0.5 rounded-md dark:bg-transparent ${paragraphHighlight} ${isSelected && `selectedHL ${storageTheme === 'light' ? 'selectedHL':'selectedHLDark'}`}`} 
+        <div className={`flex ${verseSpacing} ${verseThickness} ${verseStyle} ${isLastClick && 'relative'}`}>
+            <p className={`mr-0.5 ${verseNumSize}`}>{v.verseId}</p>
+            <p className={`px-1 py-0.5 rounded-md dark:bg-transparent ${verseSize} ${paragraphHighlight} ${isSelected && `selectedHL ${storageTheme === 'light' ? 'selectedHL':'selectedHLDark'}`}`} 
                 onClick={selectVerse} data-highlight={highlightColor}
                 data-click="verse">{v.verse}</p>
             {lastClick.length > 0 && isLastClick && isHighlightModalOpen &&<HighlightModal/>} 
