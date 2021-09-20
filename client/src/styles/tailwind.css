@@ -20,3 +20,6 @@
 .darkTextBasic{
     @apply dark:text-gray-300 dark:text-opacity-80;
 }
+.highlight{
+    @apply rounded-xl bg-yellowHL px-1 dark:text-yellowHL dark:bg-transparent;
+}

@@ -47,3 +47,8 @@ export const deleteBookmark = async(obj) => {
     const {data} = await axios.delete(`/bookmark/${obj._id}`)
     return data
 }
+
+export const searchTerm = async(obj) => {
+    const {data} = await axios.get(`/bible/search/${obj.queryKey[1]}`)
+    return data
+}

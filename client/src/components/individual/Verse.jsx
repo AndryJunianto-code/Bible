@@ -16,7 +16,7 @@ export default function Verse({v,lastClick,handleLastClick,highlightData}) {
     const dispatch = useDispatch()
     const isLastClick = lastClick[lastClick.length-1] && lastClick[lastClick.length-1].verse.includes(v.verse)
     const paragraphHighlight = highlightColor === 'blue' ? 'bg-blueHL dark:text-blueHL' : highlightColor === 'green' ? 'bg-greenHL dark:text-greenHL' : highlightColor === 'pink' ? 'bg-pinkHL dark:text-pinkHL' : highlightColor === 'yellow' ? 'bg-yellowHL dark:text-yellowHL' : ''
-    const verseNumSize = font?.size === 'extra-small' ? 'text-xmd leading-7' : font?.size === 'small' ? 'text-xs leading-8' : font?.size === 'medium' ? 'text-xs leading-8' : font?.size === 'large' ? 'text-sm leading-9' : font?.size === 'extra-large' ? 'text-sm leading-9' : ''
+    const verseNumSize = font?.size === 'extra-small' ? 'text-xmd leading-6' : font?.size === 'small' ? 'text-xs leading-7' : font?.size === 'medium' ? 'text-xs leading-8' : font?.size === 'large' ? 'text-sm leading-8' : font?.size === 'extra-large' ? 'text-sm leading-9' : ''
     const verseSize = font?.size === 'extra-small' ? 'text-sm' : font?.size === 'small' ? 'text-md' : font?.size === 'medium' ? 'text-lg' : font?.size === 'large' ? 'text-xl' : font?.size === 'extra-large' ? 'text-2xl' : ''
     const verseStyle = font?.style === 'sans' ? 'font-sans' : font?.style === 'serif' ? 'font-serif' : font?.style === 'mono' ? 'font-mono' : font?.style === 'roboto' ? 'font-roboto' : font?.style === 'acme' ? 'font-acme' : ''
     const verseThickness = font?.thickness === '100' ? 'font-light' : font?.thickness === '200' ? 'font-normal' : font?.thickness === '300' ? 'font-semibold' : font?.thickness === '400' ? 'font-bold' : ''

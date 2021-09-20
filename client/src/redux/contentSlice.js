@@ -10,6 +10,7 @@ export const contentSlice = createSlice({
         currentBookNum:books.indexOf(JSON.parse(localStorage.getItem('lastRead'))?.bookTitle)+1 || 1,
         currentChapter:JSON.parse(localStorage.getItem('lastRead'))?.chapter || 1,
         isFullScreen:false,
+        searchQuery:''
     },
     reducers:{
         setUser:(state,action)=> {
@@ -27,9 +28,12 @@ export const contentSlice = createSlice({
         },
         setIsFullScreen:(state,action)=> {
             state.isFullScreen = action.payload.bool
+        },
+        setSearchQuery:(state,action)=> {
+            state.searchQuery = action.payload.data
         }
     }
 })
 
-export const {setTitle,setCurrentBookNum,setCurrentChapter,setUser,setIsFullScreen} = contentSlice.actions
+export const {setTitle,setCurrentBookNum,setCurrentChapter,setUser,setIsFullScreen,setSearchQuery} = contentSlice.actions
 export default contentSlice.reducer

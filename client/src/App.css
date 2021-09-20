@@ -82,6 +82,10 @@ body::-webkit-scrollbar-thumb:hover {
    height: calc(100vh - 7rem);
    overflow-y:auto;
  }
+ .searchHeight{
+   height: calc(100vh - 8.2rem);
+   overflow-y: auto;
+ }
  .height86{
    height: 86%;
  }

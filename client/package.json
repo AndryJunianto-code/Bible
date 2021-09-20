@@ -2,7 +2,7 @@
     "name": "client",
     "version": "0.1.0",
     "private": true,
-    "proxy": "https://abible.herokuapp.com/api",
+    "proxy": "http://localhost:5000/api/",
     "dependencies": {
         "@auth0/auth0-react": "^1.6.0",
         "@material-ui/icons": "^4.11.2",
